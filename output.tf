@@ -7,9 +7,10 @@ output "vpc_name" {
 }
 
 output "public_sub" {
-  value = [for subnet in aws_subnet.public_sub : "${aws_vpc.testing-mb.tags["Name"]} of ${subnet.id}"]
+  value = aws_subnet.public_sub.*.id
 }
 
 output "private_sub" {
-  value = [for subnet in aws_subnet.private_sub : "${aws_vpc.testing-mb.tags["Name"]} of ${subnet.id}"]
+  value = aws_subnet.private_sub.*.id
 }
+
